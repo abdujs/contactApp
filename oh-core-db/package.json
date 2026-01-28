@@ -1,0 +1,11 @@
+{
+  "name": "orbit-db",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "docker-compose up -d && yarn all:log",
+    "down": "docker-compose down",
+    "all:log": "docker-compose logs -f --tail 100"
+  },
+  "license": "UNLICENSED",
+  "description": "orbit-core-db"
+}
