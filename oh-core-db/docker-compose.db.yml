@@ -4,11 +4,14 @@ services:
     image: postgres:12
     container_name: postgres
     ports:
-        - "5432:5432"
-    volumes: 
-        - ${PG_VOLUME_PATH}:/var/lib/postgresql/data
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
     restart: always
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+volumes:
+  pgdata:
 
 

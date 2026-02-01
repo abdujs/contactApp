@@ -12,7 +12,7 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgres@postgres:5432/postgres
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
-
+      HASURA_GRAPHQL_JWT_SECRET: '{"type":"HS256","key":"super_long_random_secret_key_1234567890abcd"}'  
   express:
     build: ../back-end
     container_name: express
@@ -21,8 +21,13 @@ services:
     depends_on:
       - postgres
     environment:
-      - DB_HOST=postgres
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB_NAME=postgres
-      - DB_PORT=5432
+      - HASURA_GRAPHQL_URL=http://hasura:8080/v1/graphql 
+      - HASURA_ADMIN_SECRET=myadminsecretkey
+      - JWT_SECRET=super_long_random_secret_key_1234567890abcd
+      # - DB_HOST=postgres
+      # - DB_USER=postgres
+      # - DB_PASSWORD=postgres
+      # - DB_NAME=postgres
+      # - DB_PORT=5432
+
+      #  docker compose -f docker-compose.app.yml -f docker-compose.db.yml up --build
